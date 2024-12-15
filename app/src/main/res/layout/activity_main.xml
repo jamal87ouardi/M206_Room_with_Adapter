@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:id="@+id/main">
+
+    <!-- EditText pour le nom -->
+    <EditText
+        android:id="@+id/editTextNom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nom"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="8dp" />
+
+    <!-- EditText pour le prix -->
+    <EditText
+        android:id="@+id/editTextPrix"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Prix"
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="8dp" />
+
+    <!-- EditText pour l'image -->
+    <EditText
+        android:id="@+id/editTextImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Lien ou chemin de l'image"
+        android:inputType="textUri"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Bouton pour ajouter le smartphone -->
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:backgroundTint="?attr/colorPrimary"
+        android:textColor="@android:color/white"
+        android:padding="12dp" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lv"/>
+
+</LinearLayout>
