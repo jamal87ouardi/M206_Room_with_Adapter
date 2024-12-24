@@ -50,4 +50,8 @@ dependencies {
     implementation("androidx.room:room-runtime:2.5.0")
     kapt("androidx.room:room-compiler:2.5.0")
 
+    implementation("com.github.bumptech.glide:glide:5.0.0-rc01")
+    kapt("com.github.bumptech.glide:compiler:5.0.0-rc01")
+
+
 }

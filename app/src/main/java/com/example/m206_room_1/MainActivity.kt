@@ -79,24 +79,16 @@ class MainActivity : AppCompatActivity() {
     private fun fetchData() {
         val listViewSmartphones = findViewById<ListView>(R.id.lv)
         val smartphonesList = mutableListOf<String>()
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, smartphonesList)
-        listViewSmartphones.adapter = arrayAdapter
+
+
+        val db = SmartphoneDatabase.getDatabase(applicationContext)
+        val smartphoneDao = db.smartphoneDao()
+        val smartphones =  smartphoneDao.getAllSmartphones()
 
 
 
-
-
-                val db = SmartphoneDatabase.getDatabase(applicationContext)
-                val smartphoneDao = db.smartphoneDao()
-                val smartphones =  smartphoneDao.getAllSmartphones()
-                smartphonesList.clear()
-
-                for (smartphone in smartphones) {
-                    smartphonesList.add("${smartphone.nom} - ${smartphone.prix} MAD")
-                }
-
-
-            arrayAdapter.notifyDataSetChanged()
+        val adapter = SmartphoneAdapter(this, smartphones)
+        listViewSmartphones.adapter = adapter
 
     }
 
