@@ -1,5 +1,6 @@
 package com.example.m206_room_1
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -32,11 +33,13 @@ class MainActivity : AppCompatActivity() {
         val ed_prix = findViewById<EditText>(R.id.editTextPrix)
         val ed_image = findViewById<EditText>(R.id.editTextImage)
         val btn_add = findViewById<Button>(R.id.buttonAdd)
+        val listViewSmartphones = findViewById<ListView>(R.id.lv)
 
         btn_add.setOnClickListener{
             val nom = ed_nom.text.toString()
             val prix = ed_prix.text.toString().toDoubleOrNull()
             val image = ed_image.text.toString()
+
 
             if (nom.isNotBlank() && prix != null && image.isNotBlank()) {
 
@@ -54,6 +57,21 @@ class MainActivity : AppCompatActivity() {
             }
 
 
+
+
+        }
+
+        listViewSmartphones.setOnItemClickListener { _, _, position, _ ->
+            val smartphones = SmartphoneDatabase.getDatabase(applicationContext).smartphoneDao().getAllSmartphones()
+            val selectedSmartphone = smartphones[position]
+
+            val intent = Intent(this, UpdateDelete::class.java).apply {
+                putExtra("id", selectedSmartphone.id)
+                putExtra("name", selectedSmartphone.nom)
+                putExtra("price", selectedSmartphone.prix)
+                putExtra("image", selectedSmartphone.image)
+            }
+            startActivity(intent)
         }
 
     }
@@ -80,6 +98,11 @@ class MainActivity : AppCompatActivity() {
 
             arrayAdapter.notifyDataSetChanged()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fetchData()
     }
 
 }

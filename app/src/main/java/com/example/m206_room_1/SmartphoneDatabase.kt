@@ -20,6 +20,16 @@ interface SmartphoneDao {
 
     @Query("SELECT * FROM smartphone_table")
     fun getAllSmartphones(): List<Smartphone>
+
+    @Update
+    fun updateSmartphone(smartphone: Smartphone)
+
+    @Query("DELETE FROM smartphone_table WHERE id = :id")
+    fun deleteSmartphoneById(id: Int)
+
+    @Query("SELECT * FROM smartphone_table WHERE nom LIKE '%' || :query || '%'")
+    fun searchSmartphonesByName(query: String): List<Smartphone>
+
 }
 
 // 3. Base de données AppDatabase
